@@ -46,10 +46,21 @@ if ingredients_list:
         session.sql(my_insert_stmt).collect()
         st.success(f"Your Smoothie is ordered, {name_on_order}!", icon="✅")
 
-import requests  
-smoothiefroot_response = requests.get("[https://my.smoothiefroot.com/api/fruit/watermelon](https://my.smoothiefroot.com/api/fruit/watermelon)")  
-# st.text(smoothiefroot_response.json())
-sf_df = st.dataframe (data=smoothiefroot_response.json(), use_container_width = True)
+import requests
 
+try:
+    smoothiefr00t_response = requests.get(
+        "https://my.smoothiefr00t.com/api/fruit/watermelon",
+        timeout=10
+    )
+    smoothiefr00t_response.raise_for_status()
+
+    st.dataframe(
+        smoothiefr00t_response.json(),
+        use_container_width=True
+    )
+
+except requests.RequestException as error:
+    st.error(f"Could not retrieve fruit data: {error}")
 
         
