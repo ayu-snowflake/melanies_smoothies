@@ -49,14 +49,14 @@ if ingredients_list:
 import requests
 
 try:
-    smoothiefr00t_response = requests.get(
-        "https://my.smoothiefr00t.com/api/fruit/watermelon",
+    smoothiefroot_response = requests.get(
+        "https://my.smoothiefroot.com/api/fruit/watermelon",
         timeout=10
     )
-    smoothiefr00t_response.raise_for_status()
+    smoothiefroot_response.raise_for_status()
 
     st.dataframe(
-        smoothiefr00t_response.json(),
+        smoothiefroot_response.json(),
         use_container_width=True
     )
 
